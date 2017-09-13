@@ -313,7 +313,16 @@ func (compiler *baseCompiler) compilerFlags(ctx ModuleContext, flags Flags) Flag
 		if Bool(ctx.AConfig().ProductVariables.Brillo) {
 			flags.GlobalFlags = append(flags.GlobalFlags, "-D__BRILLO__")
 		}
-
+		if (Bool(ctx.AConfig().ProductVariables.BoardUsesQCOMHardware)) {
+			flags.CppFlags = append(flags.CppFlags, "-DQCOM_HARDWARE")
+		}
+		if (Bool(ctx.AConfig().ProductVariables.TargetUsesQCOMBsp)) {
+			flags.CppFlags = append(flags.CppFlags, "-DQCOM_BSP")
+			flags.CppFlags = append(flags.CppFlags, "-DQTI_BSP")
+		}
+                if (Bool(ctx.AConfig().ProductVariables.TargetUsesNoTrebleCamera)) {
+                        flags.CppFlags = append(flags.CppFlags, "-DTARGET_USES_NON_TREBLE_CAMERA")
+                }
 		if ctx.Device() {
 			if Bool(compiler.Properties.Rtti) {
 				flags.CppFlags = append(flags.CppFlags, "-frtti")

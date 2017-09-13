@@ -151,6 +151,10 @@ type productVariables struct {
 
 	Override_rs_driver *string `json:",omitempty"`
 	BoardUsesQTIHardware *bool `json:",omitempty"`
+	BoardUsesQCOMHardware *bool `json:",omitempty"`
+	TargetUsesQCOMBsp *bool `json:",omitempty"`
+
+        TargetUsesNoTrebleCamera *bool `json:",omitempty"`
 }
 
 func boolPtr(v bool) *bool {
